@@ -2,7 +2,6 @@ require 'rack'
 require_relative '../lib/controller_base.rb'
 require_relative '../lib/router'
 
-# Create an erroneous new dog to test the functionality of your Flash
 
 class Dog
   attr_reader :name, :owner
@@ -45,6 +44,8 @@ class Dog
   end
 end
 
+
+
 class DogsController < ControllerBase
   def create
     @dog = Dog.new(params["dog"])
@@ -53,6 +54,7 @@ class DogsController < ControllerBase
       redirect_to "/dogs"
     else
       flash.now[:errors] = @dog.errors
+      debugger
       render :new
     end
   end
